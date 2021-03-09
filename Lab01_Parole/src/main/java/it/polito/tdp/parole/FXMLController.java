@@ -43,7 +43,7 @@ public class FXMLController {
     	long tempoInizio = System.nanoTime();
     	
     	if(txtParola.getText().equals("")) {
-    		txtResult.appendText("Inserire una parola per cortesia!");
+    		txtResult.appendText("Inserire una parola per cortesia, mi faccia il piacere!");
     		return;
     	}
     	else
