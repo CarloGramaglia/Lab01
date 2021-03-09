@@ -31,15 +31,52 @@ public class FXMLController {
 
     @FXML
     private Button btnReset;
-
+    
+    @FXML
+    private Button btnCancella;
+    
+    @FXML
+    private TextArea txtTempo;
+    
     @FXML
     void doInsert(ActionEvent event) {
-    	// TODO
+    	long tempoInizio = System.nanoTime();
+    	
+    	if(txtParola.getText().equals("")) {
+    		txtResult.appendText("Inserire una parola per cortesia!");
+    		return;
+    	}
+    	else
+    		elenco.addParola(txtParola.getText());
+    	
+    	txtResult.setText(elenco.stampaElenco());
+    	txtParola.clear();
+    	long tempoFine = System.nanoTime();
+    	txtTempo.appendText("Tempo impiegato: "+(tempoFine-tempoInizio)+"ns\n");
     }
 
     @FXML
     void doReset(ActionEvent event) {
-    	// TODO
+    	long tempoInizio = System.nanoTime();
+    	elenco.reset();
+    	txtResult.clear();
+    	long tempoFine = System.nanoTime();
+    	txtTempo.appendText("Tempo impiegato: "+(tempoFine-tempoInizio)+"ns\n");
+    }
+    
+    @FXML
+    void doCancella(ActionEvent event) {
+    	long tempoInizio = System.nanoTime();
+    	if(!txtParola.getText().equals("")) {
+    		elenco.cancella(txtParola.getText());
+    	}
+    	else
+    		txtResult.appendText("Inserire una parola da cancellare per cortesia!");
+    	
+    	txtResult.setText(elenco.stampaElenco());
+    	txtParola.clear();
+    	long tempoFine = System.nanoTime();
+    	txtTempo.appendText("Tempo impiegato: "+(tempoFine-tempoInizio)+"ns\n");
     }
 
     @FXML
